@@ -3,7 +3,7 @@ CDEBUG = -g
 CFLAGS = $(CDEBUG)
 SRCS_C = hello.c
 
-hello:
+hello: $(SRCS_C)
 	$(CC) $(CFLAGS) -o $@ $(SRCS_C)
 
 .PHONY: clean
