@@ -29,3 +29,23 @@ Denis M. Ritchie
   - Modern compilers already complies with the ANSI standard at the time
   - (Growth of the computing power: of PCs is the same of the rival mainframes of a decade ago)
   - (The authors were provided with an ANSI C compiler and used Bjarned Stroustrup's C++ translator)
+
+
+
+* Preface to the First Edition
+
+- C is a *general-purpose* programming language
+  - Features: *economy of expression*, *modern control flow and data structures*, and a *rich set of operators*
+  - Not a "very high level language", nor a "big" one, and versatile (i.e., not specialized to any particular area of application)
+  - Absence of restrictions + Generality = More convenient and effective than supposedly more powerful languages
+
+- C was originally designed for and implemented on the UNIX OS
+  - The *OS*, the *C compiler*, and all *UNIX applications programs* are written in C
+  - Portable: C is *not tied to any particular hardware or system* (the targeted architecture requires an implementation of the compiler, though)
+  - (Created on the DEC PDP-11 by Dennis Ritchie)
+
+- This book helps the reader with C by *exposing examples* rather than on mere statements of rules
+  - Most of the examples are *concrete programs* rather than *isolated fragments of code* \rightarrow Illustrate useful algorithms and principle of good style and sound design
+  - Content: Tutorial introduction + Separate chapters for each major feature + Reference manual
+  - Assumes that the reader is familiar with basic programming concepts
+  - (Each example has been tested directly from text, which is in a machine-readable form)
