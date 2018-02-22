@@ -5,3 +5,27 @@ Second edition
 1988
 Brian W. Kernighan
 Denis M. Ritchie
+
+
+* Preface
+
+- *1978*: release of the *first edition* of /The C Programming Language/
+  - The *only defintion* for the C language at the time
+  - Growing popularity + Changes + Creation of compilers by groups not involved in its design = Need for a more precise and comtemporary definition
+
+- *1983*: the ANSI etablished a commitee whose goal was to create "an an unambiguous and machine-independent definition of the language C"
+  - The *ANSI standard for C* is borned:
+    - *Formalizes constructions that were hinted* but not described in the /The C Programming Language/ (e.g., struct, enum)
+    - *New form of function declaration* that permits cross-checking of definition with use
+    - Specifies the *standard library*
+    - States explictly *machine-dependent aspects* of the language
+
+- *1988*: release of the *second edition* of /The C Programming Language/
+  - Describes C as defined by the ANSI standard
+  - Programs are written *exclusively* in the new form (no changes for the most part) + improved examples with better exposition of features
+  - Brieveity: "*C is not a big language, and it is not well served by a big book*"
+  - Meant for *easy comprehension by programmers*, but *not as a definition for compiler writers* (that role belongs to the standard itself)
+  - C "*wears well as one's experience with it grows*" is still true after a decade
+  - Modern compilers already complies with the ANSI standard at the time
+  - (Growth of the computing power: of PCs is the same of the rival mainframes of a decade ago)
+  - (The authors were provided with an ANSI C compiler and used Bjarned Stroustrup's C++ translator)
