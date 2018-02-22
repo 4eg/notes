@@ -1,11 +1,11 @@
 CC = gcc
 CDEBUG = -g
 CFLAGS = $(CDEBUG)
-SRCS_C = c_to_f.c
+SRCS_C = f_to_c.c
 
-c_to_f: $(SRCS_C)
+f_to_c: $(SRCS_C)
 	$(CC) $(CFLAGS) -o $@ $(SRCS_C)
 
 .PHONY: clean
 clean:
-	rm -f *.o c_to_f core
+	rm -f *.o f_to_c core
