@@ -1,0 +1,7 @@
+#+TITLE: The C Programming Language - Notes
+
+The C Programming Language
+Second edition
+1988
+Brian W. Kernighan
+Denis M. Ritchie
