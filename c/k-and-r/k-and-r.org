@@ -11,24 +11,23 @@ Denis M. Ritchie
 
 - *1978*: release of the *first edition* of /The C Programming Language/
   - The *only definition* for the C language at the time
-  - Growing popularity + Changes + Creation of compilers by groups not involved in its design = Need for a more precise and comtemporary definition
+  - Growing popularity + Changes + Creation of compilers by groups not involved in its design = Need for a more precise and contemporary definition
 
-- *1983*: the ANSI etablished a committee whose goal was to create "an an unambiguous and machine-independent definition of the language C"
-  - The *ANSI standard for C* is borned:
-    - *Formalizes constructions that were hinted* but not described in the /The C Programming Language/ (e.g., struct, enum)
-    - *New form of function declaration* that permits cross-checking of definition with use
-    - Specifies the *standard library*
-    - States explictly *machine-dependent aspects* of the language
+- *1983*: the ANSI established a committee whose goal was to create "an an unambiguous and machine-independent definition of the language C"
+  - Based on the original reference manual
+  - *Minor changes only* to ensure *compatibility* with existing programs \rightarrow Compilers would produce warnings of new behavior if not valid
+  - \rightarrow The resulting definition, the *ANSI standard* or "*ANSI C*", was completed late in 1988
 
 - *1988*: release of the *second edition* of /The C Programming Language/
-  - Describes C as defined by the ANSI standard
-  - Programs are written *exclusively* in the new form (no changes for the most part) + improved examples with better exposition of features
+  - Describes C as defined by the *ANSI standard*
+  - Programs are written *exclusively* in the new form (no changes for the most part) + Improved examples with better exposition of features
+  - Modern compilers *already complies* with the ANSI standard at the time
   - Brevity: "*C is not a big language, and it is not well served by a big book*"
-  - Meant for *easy comprehension by programmers*, but *not as a definition for compiler writers* (that role belongs to the standard itself)
-  - C "*wears well as one's experience with it grows*" is still true after a decade
-  - Modern compilers already complies with the ANSI standard at the time
+  - Meant for *easy comprehension by programmers*, but *not as a definition for compiler writers* \rightarrow That role belongs to the standard itself
   - (Growth of the computing power: of PCs is the same of the rival mainframes of a decade ago)
   - (The authors were provided with an ANSI C compiler and used Bjarne Stroustrup's C++ translator)
+
+- \rightarrow C "*wears well as one's experience with it grows*" is still true after a decade
 
 
 
@@ -37,16 +36,18 @@ Denis M. Ritchie
 - C is a *general-purpose* programming language
   - Features: *economy of expression*, *modern control flow and data structures*, and a *rich set of operators*
   - Not a "very high level language", nor a "big" one, and versatile (i.e., not specialized to any particular area of application)
+  - A "*system programming language*" as well: useful for writing compilers and operating system \rightarrow "*C is a portable assembly language*"
   - Absence of restrictions + Generality = More convenient and effective than supposedly more powerful languages
 
 - C was originally designed for and implemented on the UNIX OS
-  - The *OS*, the *C compiler*, and all *UNIX applications programs* are written in C
+  - The *OS*, the *C compiler*, and all *UNIX applications programs* are written in C \rightarrow *Thus, UNIX became the first portable operating system*
   - Portable: C is *not tied to any particular hardware or system* (the targeted architecture requires an implementation of the compiler, though)
   - (Created on the DEC PDP-11 by Dennis Ritchie)
 
-- This book helps the reader with C by *exposing examples* rather than on mere statements of rules
+- This book is based on *revising examples* rather than on *mere statements of rules*
+  - Authors believe that the way to learn a new language is to *write programs in it*
   - Most of the examples are *concrete programs* rather than *isolated fragments of code* \rightarrow Illustrate useful algorithms and principle of good style and sound design
-  - Content: Tutorial introduction + Separate chapters for each major feature + Reference manual
+  - *Content*: Tutorial introduction + Separate chapters for each major feature + Reference manual
   - Assumes that the reader is familiar with basic programming concepts
   - (Each example has been tested directly from text, which is in a machine-readable form)
 
