@@ -49,3 +49,100 @@ Denis M. Ritchie
   - Content: Tutorial introduction + Separate chapters for each major feature + Reference manual
   - Assumes that the reader is familiar with basic programming concepts
   - (Each example has been tested directly from text, which is in a machine-readable form)
+
+
+
+* Introduction
+
+- C is a relatively *low level* language \rightarrow Deals with the same sort of *objects that most computers do* (i.e., characters, numbers and addresses)
+  - They may be *combined* and *moved about* with the arithmetic and logical operators implemented by real machines
+
+- _C does feature_:
+
+  - In addition to *fundamental types* (i.e., characters, integers and floating-point numbers of several sizes), there is a hierarchy of *derived data types* created with pointers, arrays and unions
+  - *Expressions* are formed from operators and operands; any expression, including an assignment or a function call, can be a statement
+  - *Pointers* provide for machine-independent address arithmetic
+
+  - *Control-flow constructions*:
+    - Statement grouping
+    - Decision making (=if-else=)
+    - Selecting one of a set of possible cases (=switch=)
+    - Looping with the termination test at the top (=while=, =for=) or at the bottom (=do=)
+    - Early loop exit (=break=)
+
+  - *Functions* may return values of basic types, structures, unions, or pointers
+    - Any function may be called *recursively*
+    - *Local variables* are typically "automatic", or created anew with each invocation
+    - Functions may not be *nested*, but variables may be declared in a block-structured fashion
+    - They may exist in a *separate* source files that are compiled separately
+
+  - *Variables* may be:
+    - *Internal* to a function
+    - *External* but known only within a single source file
+    - *Visible to the entire program*
+
+  - A *preprocessing step* performs:
+    - *Macro substitution* on program text
+    - *Inclusion* of other source files
+    - *Conditional compilation*
+
+  - *Straightforward* and *single-thread* control flow: tests, loops, grouping, and subprograms, but not multiprogramming, parallel operations, synchronization, or coroutines
+
+- _C does not feature_:
+
+  - *Operations* to deal directly with *composite objects* such as character string, sets, lists, or array \rightarrow Although structures may be copied as a unit
+  - *Heap* or *garbage collection*: no *storage allocation facility* other than *static definition* and the *stack discipline* provided by the local variables of functions
+  - *Input/output facilities* (i.e., no READ or WRITE statements) nor built-in *file access methods*
+
+- All of these higher-level mechanisms must be provided by *explicitly-called functions*
+  - Although the absence of some of these features may seem like a *grave deficiency*, keeping the language down to *modest size has real benefits*
+    - It can be described in a *small space*, and thus *learned quickly* \rightarrow A programmer can reasonably expect to *know*, *understand*, and *regularly use* the *entire language*
+
+- Many of the important ideas of C stem from the *language BCPL*
+  - The influence of BCPL on C proceeded indirectly through the language B
+  - In contrast to C, B and BCPL are *typeless* languages
+  - (1970: creation of the language B by Ken Thompson on the DEC PDP-7)
+
+- _Contributions brought by the standard to the language_:
+
+  - _Language changes_:
+    - Most important one: *new syntax for declaring and defining functions*
+      - Permits *cross-checking of definition with use*
+      - A function declaration can now include a *description of the arguments* of the function; the definition syntax changes to match
+      - \rightarrow Much easier for compiler to detect errors caused by mismatched arguments
+    - Other ones:
+      - Formalization of *structure assignment* and *enumerations* \rightarrow They were hinted bu not described in the original definition
+      - *Floating-point computations* may now be done in *single precision*
+      - *Properties of arithmetic* are clarified \rightarrow Especially for unsigned types
+      - The *preprocessor* is more elaborate
+      - *Type-checking* has been strengthened (e.g., interchange of pointers and integers are now forbidden)
+	- *Proper declarations* and *explicit conversions* are now required by the standard (but was already enforced in good compilers)
+	- New function declarations are a step in this direction as well
+
+  - _Definition of a library to accompany C_ \rightarrow Provides a common interface to the OS
+    - *A collection of standard headers* provides uniform access to *declarations of function* and *data types*
+    - *Assurance of compatible behavior* when a program using it is executed on different host systems
+    - Closely modeled on the *standard I/O library* of the UNIX system (described in the first edition) \rightarrow Programmers will not see much change with the new library
+    - Specifies *functions* for:
+      - Accessing the OS* (e.g., read and write files)
+      - Formatted input and output
+      - Memory allocation
+      - String manipulation
+      - ...
+    - Functions are only called *explicitly* \rightarrow The library can be avoided if not used
+    - Most of these functions are *written in C* \rightarrow Thus they are *portable* (except for the OS details they might conceal)
+
+- The *run-time library* required to implement self-contained program is *tiny* \rightarrow Due to direct support of data types and control structures provided
+
+- *Portability*: C is independent of any particular *machine architecture* despite it matches the capabilities of many computers
+  - The standard states explicitly *machine-dependent aspects* of the language \rightarrow Description of *portability issues* and *a set of constant that characterizes the host machine*
+
+- C is not a *strongly-typed* language
+  - Compilers will warn of most *type errors*, and there is *no automatic conversion* of incompatible data types
+  - C retains the basic philosophy that "*programmers know what they are doing; it only requires that they state their intentions explicitly*"
+
+- *Blemishes*:
+  - Some of the operators have the *wrong precedence*
+  - Some parts of the syntax *could be better* ([[https://stackoverflow.com/a/46759840][proof]])
+
+- \rightarrow Nonetheless, C has proven to be an extremely *effective* and *expressive* language for a wide variety of programming applications
