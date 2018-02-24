@@ -162,3 +162,54 @@ Denis M. Ritchie
   - May be *misleading*
   - Not using the *full power of C* \rightarrow Programs are not as *elegant* and concise as they might be
   - Later chapters will necessarily repeat some of the contents of this one
+
+
+** 1-1 Getting Started
+
+- _Creating a C program on the UNIX OS_:
+  - The *text of a program* must be saved in a *file* whose name ends in ".c" (e.g., hello.c)
+  - *Compile* this file with the command src_sh{cc hello.c} \rightarrow src_sh{gcc hello.c} on a GNU/Linux system
+  - Compilation proceeds silently and makes an *executable file* named "*a.out*"
+  - *Run* the latter by typing its name: src_sh{a.out} \rightarrow src_sh{./a.out} on a GNU/Linux system
+
+#+BEGIN_SRC C
+  #include <stdio.h>
+
+  main()
+  {
+          printf("hello, world\n");
+  }
+#+END_SRC
+
+- _Explanations_:
+  - A C program, whatever its size, consists of /functions/ and /variables/
+    - *Functions* contain /statements/ that specify the computing operations to be done
+      - The statements of a function are enclosed in braces ={}=
+    - *Variables* store values used during the computation
+
+  - When defined, functions and variables can be given *any name* (except reserved keywords)
+    - *Exception*: the program begins executing at the beginning of a function named =main= \rightarrow Every program must have a =main= function somewhere
+      - =main= will usually *call other functions* that you either wrote or present in the standard library
+
+  - src_C{#include <stdio.h>} tell the *preprocessor* to include information about the *standard input/output library*
+
+  - A function is called by *naming it*, followed by *a parenthesized list of arguments*
+    - One method of *communicating data between functions* is for the *calling function* to provide *a list of values*, called /arguments/, to the *function it calls*
+    - The argument list is delimited by a *pair of parentheses* after the function name \rightarrow Even if a function expects no arguments, an empty list =()= must be specified
+    - (C functions are like the subroutines and functions of Fortran or the procedures and functions of Pascal)
+
+  - A sequence of characters delimited by double quotes "" is called a /character string/ (or /string constant/)
+    - The sequence =\n= is C notation for the /newline character/
+      - =\n= is called an /escape sequence/ \rightarrow Provides a *general and extensible mechanism* for representing *hard-to-type or invisible characters*
+	- =\n= represents *a single character* (at least on UNIX)
+	- An *error message* might be produced by the C compiler when trying to *substitute an escape sequence* by the character it produces (e.g., the statement below)
+      - If omitted, no line advance will occur after the output is printed \rightarrow =printf= never supplies a newline automatically and might be called *several times* to build up an output line in stages
+
+#+BEGIN_SRC C
+  printf("hello, world
+  ");
+#+END_SRC
+
+_Exercises_:
+- [[file:exercises/1-1/hello.c][Exercise 1-1]]
+- [[file:exercises/1-2/escape_sequences.c][Exercise 1-2]]
