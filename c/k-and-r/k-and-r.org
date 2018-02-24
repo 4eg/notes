@@ -147,3 +147,18 @@ Denis M. Ritchie
   - Some parts of the syntax *could be better* ([[https://stackoverflow.com/a/46759840][proof]])
 
 - \rightarrow Nonetheless, C has proven to be an extremely *effective* and *expressive* language for a wide variety of programming applications
+
+
+
+* Chapter 1: A Tutorial Introduction
+
+- Shows the *essential elements* of the language without getting bogged down in details, rules and exceptions
+- Neither complete or precise \rightarrow Features to write bigger programs are put aside (e.g, pointers, structures, set of operators, several control flow statements, standard library)
+- *Focus on the basics*: variables and constants, arithmetic, control flow, functions, and the rudiments of input and output \rightarrow Write useful programs ASAP
+- Can be used as a *framework* for programmers of any level
+
+- Drawbacks of this approach:
+  - *No complete story* on any particular feature
+  - May be *misleading*
+  - Not using the *full power of C* \rightarrow Programs are not as *elegant* and concise as they might be
+  - Later chapters will necessarily repeat some of the contents of this one
