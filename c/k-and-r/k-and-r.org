@@ -45,11 +45,12 @@ Denis M. Ritchie
   - (Created on the DEC PDP-11 by Dennis Ritchie)
 
 - This book is based on *revising examples* rather than on *mere statements of rules*
-  - Authors believe that the way to learn a new language is to *write programs in it*
   - Most of the examples are *concrete programs* rather than *isolated fragments of code* \rightarrow Illustrate useful algorithms and principle of good style and sound design
   - *Content*: Tutorial introduction + Separate chapters for each major feature + Reference manual
   - Assumes that the reader is familiar with basic programming concepts
   - (Each example has been tested directly from text, which is in a machine-readable form)
+
+- \rightarrow "The *only way* to learn a new programmming language is by *writting programs in it*."
 
 
 
