@@ -213,3 +213,77 @@ Denis M. Ritchie
 _Exercises_:
 - [[file:exercises/1-1/hello.c][Exercise 1-1]]
 - [[file:exercises/1-2/escape_sequences.c][Exercise 1-2]]
+
+
+** 1.2 Variables and Arithmetic Expressions
+
+- A /comment/ explains briefly what the program does \rightarrow Make it easier to understand
+  - Any characters between ~*/~ and ~*/~ are *removed by the preprocessor* before compilation
+  - Comments may appear *anywhere a blank or tab or newline can*
+
+- A /statement/ is terminated by a semicolon ~;~ \rightarrow Permits to *distinguish statements from what are not them*
+
+- A /declaration/ announces the *properties of variables*
+  - *All variables must be declared before they are used in C* \rightarrow Usually at the *beginning of the function* before any executable statement
+  - declaration = type name + a list of variables \rightarrow E.g., ~int fahr, celsius;~
+  - The size of the objects of these types are *machine-dependent* (e.g., 32-bit ~ints~ VS 16-bit ~ints~)
+  - (Other data structures utilizes these basic types to create bigger data types)
+
+- _Basic data types_ (non-exhaustive):
+
+| Type     | Description                                                                            |
+|----------+----------------------------------------------------------------------------------------|
+| ~int~    | integer                                                                                |
+| ~float~  | floating point number (typically a 32-bit quantity, with at least 6 significant digits) |
+| ~char~   | character (a single byte quantity)                                                     |
+| ~short~  | short integer                                                                          |
+| ~long~   | long integer                                                                           |
+| ~double~ | double-precision floating point                                                        |
+
+- An /assignment statement/ assigns a value to a variable \rightarrow E.g., ~lower = 0;~
+  - (This is where the computation starts in the provided program)
+
+- A *loop* repeats one or more statements while *a condition is true*
+  - Composed of: *a condition* enclosed in parentheses ~()~ + *a body* enclosed in braces ~{}~ (optional if it contains a single statement)
+  - The condition is *retested at each iteration*
+  - When the condition becomes false, the *execution continues* at the next statement
+
+- *Proper indentation and spacing* are not required by the compiler but are *critical to make the program easier to read*
+  - The /indentation/ emphasizes the *logical structure of a program*
+    - E.g, statements inside the loop are indented by one tab stop
+  - *One statement per line* is recommended
+  - *Blanks placed around operators* clarify grouping
+  - The *position of braces* is less important and depends on the style picked
+    - \rightarrow *No matter what the style is, the important is to use it consistently*
+
+- *Integer division truncates* in C (as in many other languages) \rightarrow *Any fractional part is discarded*
+  - ~celsius = 5 * (fahr-32) / 9~ would *result in 0* if the division was the first operation \rightarrow *But the result is still truncated*
+    - If an arithmetic operator has *integer operands*: *an integer operation* is performed
+  - The ~float~ *type can be used instead*
+    - If an arithmetic operand has *one integer and one floating-point operand*: *integer operand is converted to floating-point operand* and *floating-point operation* is performed
+      - Prefer to write floating-point constants *ending with* ~.0~ (or ~.~) instead of integer constants when *dealing with other floating-point operands* \rightarrow Emphasizes their *floating-point nature* and *avoid conversion*
+
+- ~printf~ is *a general-purpose output formatting function*
+  - *Not part of the C language* (no i/o defined in C itself) but part of the *standard library*
+  - The first argument is the *string of characters to be printed*
+  - The other arguments are the *values that substitutes each format specifier*
+    - ~%d~ and ~%f~ can be augmented with a *minimum width* (right-justifies) \rightarrow E.g., ~%3d~, ~%2f%~
+    - ~%f~ can be be augmented with a *maximum number of digits after the decimal point* \rightarrow E.g., ~%.2f%, ~%3.0f%~
+  - (Format specifiers and arguments must match up properly by *number* and *type* under penalty of wrong output)
+
+- _Format specifiers_ (non-exhaustive):
+
+| Format specifier | Specified argument |
+|------------------+--------------------|
+| ~%d~             | integer            |
+| ~%f~             | floating-point     |
+| ~%o~             | octal              |
+| ~%x~             | hexadecimal        |
+| ~%c~             | character          |
+| ~%s~             | character string   |
+
+- ~%%~ must be used to output the ~%~ itself
+
+_Exercises_:
+- [[file:exercises/1-3/f_to_c.c][Exercise 1-3]]
+- [[file:exercises/1-4/c_to_f.c][Exercise 1-4]]
