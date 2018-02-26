@@ -317,7 +317,27 @@ _Exercises_:
 - Thus, they can be *any expressions*
   - Any part can even be *empty* between the ~;~ \rightarrow Infinite loop if none
 
-- *Recommandation for loops*: use a ~for~ *when the number of iterations is known beforehand* and a ~while~ *when not*
+- *Recommendation for loops*: use a ~for~ *when the number of iterations is known beforehand* and a ~while~ *when not*
 
 _Exercises_:
 - [[file:exercises/1-5/f_to_c.c][Exercise 1-5]]
+
+
+** 1.4 Symbolic Constants
+
+- *Bad practice*: bury "magic numbers" in a program (e.g., 300, 20) \rightarrow Convey little information to the reader + Must change all occurrences when updating values
+  - *Solution*: give them meaningful name via /symbolic constants/
+
+- _Symbolic constant syntax_:
+
+#+BEGIN_SRC C
+  #define NAME replacement_text
+#+END_SRC
+
+- *A search and replace operation*: Any occurrence of ~NAME~ will be *replaced* by the corresponding ~replacement_text~ in the program text \rightarrow Done during the *preprocessing step*
+  - ~NAME~ will not be replaced when *in quotes* or *part of another name*
+  - ~NAME~ must respect the naming rules as *a variable name* \rightarrow Conventionally written in *upper case* to be readily distinguished
+  - ~replacement_text~ can be *any text* that will *make sense when replaced with* (e.g., integers, floating-point number, type, type with variable name, function name, text in quotes)
+
+- Symbolic constants must *not appear in declarations* since they are not variables \rightarrow Generally under ~#include~ directives
+- (Note that there is no ~;~)
