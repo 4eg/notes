@@ -341,3 +341,18 @@ _Exercises_:
 
 - Symbolic constants must *not appear in declarations* since they are not variables \rightarrow Generally under ~#include~ directives
 - (Note that there is no ~;~)
+
+
+** 1.5 Character Input and Output
+
+- Chapter focuses on *a family of related programs* for *processing character data*
+  - Many UNIX programs are just *expanded versions* of the prototypes discussed
+
+- The *model of input and output* supported by the *standard library* is very simple: text input or output is dealt with as *stream of characters*
+  - A /text stream/ is a *sequence of characters* divided into *lines*; each line consists of *zero or more characters* followed by *a newline character*
+  - The *standard library* is responsible for making each input or output stream *conform to this model* \rightarrow Thus, programmer does not need to worry about *how lines are represented outside the program*
+
+- Several functions are provided for *reading or writing one character at a time*
+  - *Simplest ones*:
+    - ~getchar~: reads the /next input character/ from a text stream and returns that as its value (e.g., ~c = getchar()~)
+    - ~putchar~: prints the character passed as argument (e.g. ~putchar('A')~ \rightarrow ~A~, ~putchar(97)~ \rightarrow ~a~)
