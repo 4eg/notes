@@ -392,3 +392,50 @@ _Exercises_:
 _Exercises_:
 - [[file:exercises/1-6/i2bool.c][Exercise 1-6]]
 - [[file:exercises/1-7/eofval.c][Exercise 1-7]]
+
+
+*** 1.5.2 Character Counting
+
+#+BEGIN_SRC C
+  #include <stdio.h>
+
+  /* count characters in input */
+  main()
+  {
+          long nc;                /* number of characters */
+
+          nc = 0;
+          while (getchar() != EOF)
+                  ++nc;
+          printf("%ld\n", nc);
+  }
+#+END_SRC
+
+- The ~++~ operator /increments by one/ the value of a variable \rightarrow Shorter than ~nc  = nc + 1~
+  - The ~--~ operator exists just as well (/decrements/)
+  - They can be either *prefix operators* (e.g., ~++nc~) or *postfix* (e.g., *nc++*) \rightarrow Stick to the *prefix form* most of the time
+
+- The ~long~ type (at least 32-bit) is used because the number of characters in a file can easily *overflow a ~16-bit int~ counter*
+  - Although, the ~long~ and ~int~ types are the *same size on modern computers* most of the time
+  - ~%ld~ is the *format specifier for* a ~long~ integer
+  - An even *wider range of values* could have been provided *utilizing a ~double~ counter*
+
+#+BEGIN_SRC C
+  double nc;
+
+  for (nc = 0; getchar() != EOF; ++nc)
+          ;
+  printf("%.0f\n", nc);
+#+END_SRC
+
+- If a *single operation* is executed while iterating through the file, one could prefer using *a ~for~ statement*
+  - The grammatical rules of C *require that a ~for~ statement have a body* \rightarrow Represented by the ~;~, called a /null statement/ (newline for visibility, not mandatory + Empty ~{}~ could have been used as well)
+  - The *increment part* of the for loop could have been omitted and *placed in the loop body* \rightarrow Clearer to use a ~while~ in that case (+ if there is more than one statement while iterating through)
+
+- Since a ~double~ is a floating-point value, ~%.0~ must be used to *truncate its fractional part*
+
+- *Important*: For both ~while~ and ~for~ versions, the *boundary case* "zero length input" prints the right answer
+  - \rightarrow The *loop condition is evaluated at the top of the loop* for both, before proceeding with the body
+  - ~getchar~ returns ~EOF~ at the very first test \rightarrow The condition is *false* \rightarrow The body of the loop is *never entered*
+
+- \rightarrow *Programs should act intelligently when tested with boundary conditions*
