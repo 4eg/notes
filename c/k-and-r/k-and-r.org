@@ -439,3 +439,46 @@ _Exercises_:
   - ~getchar~ returns ~EOF~ at the very first test \rightarrow The condition is *false* \rightarrow The body of the loop is *never entered*
 
 - \rightarrow *Programs should act intelligently when tested with boundary conditions*
+
+
+*** 1.5.3 Line Counting
+
+#+BEGIN_SRC C
+  #include <stdio.h>
+
+  /* count lines in input */
+  main()
+  {
+          int c, nl;
+
+          nl = 0;
+          while ((c = getchar()) != EOF)
+                  if (c == '\n')
+                          ++nl;
+          printf("%d\n", nl);
+  }
+#+END_SRC
+
+- Since the standard library ensures that text streams follows the same model, *counting lines is just counting newlines*
+
+- ~==~ is the C notation for "*is equal to*" \rightarrow Different from the *assignment operator ~=~* \rightarrow *Warning: both operators produces legal expressions*
+
+- A /character constant/ is *a character written between single quotes* that represents *an integer value equal to the numerical value of the character in the machine's character set* (e.g., ~'A' == 65~ is true)
+  - An escape sequence is interpreted as *a single character* \rightarrow Thus, they are legal as *character constants* (e.g., ~'\n' == 10~ is true)
+    - *Different from the string constant ~"\n"~* (which contains one character: ~'\n'~)
+
+#+BEGIN_SRC C
+  char c;
+
+  for (c = 'A'; c <= 'Z'; ++c) {
+          /* iterates over characters A to Z */
+  }
+#+END_SRC
+
+- \righarrow *Always prefer to work with character constants over their numerical value*
+  - + Independence of *a particular character set* (even if ASCII is almost always used)
+
+_Exercises_:
+- [[file:exercises/1-8/spcc.c][Exercise 1-8]]
+- [[file:exercises/1-9/sb.c][Exercise 1-9]]
+- [[file:exercises/1-10/spcr.c][Exercise 1-10]]
