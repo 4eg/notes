@@ -356,3 +356,39 @@ _Exercises_:
   - *Simplest ones*:
     - ~getchar~: reads the /next input character/ from a text stream and returns that as its value (e.g., ~c = getchar()~)
     - ~putchar~: prints the character passed as argument (e.g. ~putchar('A')~ \rightarrow ~A~, ~putchar(97)~ \rightarrow ~a~)
+
+
+*** 1.5.1 File Copying
+
+- ~getchar~ and ~putchar~ are *sufficient to write useful programs* without knowing anything more about *input and output*
+
+#+BEGIN_SRC C
+  #include <stdio.h>
+
+  /* copy input to output */
+  main()
+  {
+          int c;
+
+          while ((c = getchar()) != EOF)
+                  putchar(c);
+  }
+#+END_SRC
+
+- A character is *stored internally as a bit pattern* \rightarrow Like everything else on a computer
+- The ~c~ variable is used to *store and reuse the read character* \rightarrow If you do not need to work on the read character (e.g., with a counter), you *do not need a variable*
+- Although the data type ~char~ is specifically meant for storing characters, ~int~ is used instead because it provides *a wider range of values* to hold characters not present in the ASCII table
+  - (+ Apparently, there was a time where ~char~ could not hold ~EOF~ + any possible ~char~)
+
+- ~EOF~ ("*End of file*") is a *symbolic constant* defined in ~<stdio.h>~ that can be used to *distinguish the end of input from valid data*
+  - Has to be *distinct from any character that can be found in a file* to serve its purpose \rightarrow Often defined as -1
+  - The ~EOF~ value is returned by ~getchar~ when there is *no more input*
+
+- *Expressions* in C have *a value*
+  - *Assignments* are expressions and their value is the *one of the left hand side* after the assignment
+    - Thus, assignments can be part of *another expression* (e.g., ~(a = 8) + 8~) \rightarrow Easier to read once the *idiom is mastered*
+      - ~()~ *are necessary* \rightarrow The /precedence/ of ~!=~ is *higher than that of* ~=~
+
+_Exercises_:
+- [[file:exercises/1-6/i2bool.c][Exercise 1-6]]
+- [[file:exercises/1-7/eofval.c][Exercise 1-7]]
