@@ -482,3 +482,111 @@ _Exercises_:
 - [[file:exercises/1-8/spcc.c][Exercise 1-8]]
 - [[file:exercises/1-9/sb.c][Exercise 1-9]]
 - [[file:exercises/1-10/spcr.c][Exercise 1-10]]
+
+
+*** 1.5.4 Word Counting
+
+#+BEGIN_SRC C
+  #include <stdio.h>
+
+  #define IN      1               /* inside a word */
+  #define OUT     0               /* outside a word */
+
+  /* count lines, words, and characters in input */
+  main()
+  {
+          int c, nl, nw, nc, state;
+
+          state = OUT;
+          nl = nw = nc = 0;
+          while ((c = getchar()) != EOF) {
+                  ++nc;
+                  if (c == '\n')
+                          ++nl;
+                  if (c == ' ' || c == '\n' || c == '\t')
+                          state = OUT;
+                  else if (state == OUT) {
+                          state = IN;
+                          ++nw;
+                  }
+          }
+          printf("%d %d %d\n", nl, nw, nc);
+  }
+#+END_SRC
+
+- \rightarrow *Bare-bones version* of the UNIX program ~wc~
+- *Loose definition of a word*: any sequence of characters that does not contain a blank, tab, or newline
+- A word is counted every time the *first character of word is encountered*
+
+- ~state~ stores whether the program is currently *in a word or not*
+  - Notice how ~IN~ and ~OUT~ make the program *easier to read* (instead of /literal values/ / "magic numbers") \rightarrow Little difference in this program, but worth it in larger programs for *clarity* and *maintainability* (+ no performance cost at compilation)
+
+- ~a = b = c = 0;~ precedence: ~(a = (b = (c = 0)));~
+
+- ~||~: *logical or* (between expressions)
+- ~&&~: *logical and* (between expressions) \rightarrow *Higher precedence than* ~||~
+  - Expressions connected by those operators are *expressions as well* (just larger)
+    - Evaluated from *left to right* \rightarrow *Guaranteed that evaluation will stop as soon as the truth or falsehood is known*
+      - E.g., in this program, if ~c~ is equal to ~' '~, the following tests with '\n' and '\t' respectively *are not evaluated*
+
+if (/expression/)
+	/statement/_1
+else
+	/statement/_2
+
+- ~else~ specifies *an alternative action* if the condition part of an ~if~ statement is *false*
+  - If the /expression/ is true, /statement/_1 is executed; if not, /statement/_2 is executed
+  - An ~else~ /statement/_2 can be any statement, *even an* ~if~ *statement to test another condition* \rightarrow *WARNING*: ~else if~ *is not a statement by itself*
+    - *E.g., in this program, the statement after the* ~else~ *is an* ~if~ *that controls two statements in braces*
+
+#+BEGIN_SRC C
+  /* the following statements */
+  if (0)
+          putchar('A');
+  else if (0)
+          putchar('B');
+  else
+          putchar('C');
+
+  /* are the same as: */
+  if (0) {
+          putchar('A');
+  } else if (0) {
+          putchar('B');
+  } else {
+          putchar('C');
+  }
+
+  /* which are the same as: */
+  if (0) {
+          putchar('A');
+  } else { if (0) {
+          putchar('B');
+  } else {
+          putchar('C');
+  }}
+
+  /* which are at last the same as: */
+  if (0) {
+          putchar('A');
+  } else {
+          if (0) {
+                  putchar('B');
+          } else {
+                  putchar('C');
+          }
+  }
+#+END_SRC
+
+- \rightarrow *Do not let the optional braces fool you*
+  - An ~if-else~ is *a single statement* \rightarrow If an ~if-else~ is the *only statement* contained in an ~else~, the *braces of the latter can be omitted*
+
+#+BEGIN_SRC C
+  if (8 != 7) if (9 != 5) {
+                  /* possible as well */
+  }
+#+END_SRC
+
+_Exercises_:
+- [[file:exercises/1-11/wc.c][Exercise 1-11]]
+- [[file:exercises/1-12/wpl.c][Exercise 1-12]]
