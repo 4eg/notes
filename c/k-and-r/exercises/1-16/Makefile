@@ -1,11 +1,11 @@
 CC = gcc
 CDEBUG = -g
 CFLAGS = $(CDEBUG)
-SRCS_C = longl.c
+SRCS_C = ll.c
 
-longl: $(SRCS_C)
+ll: $(SRCS_C)
 	$(CC) $(CFLAGS) -o $@ $^
 
 .PHONY: clean
 clean:
-	rm -f *.o longl core
+	rm -f *.o ll core

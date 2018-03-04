@@ -10,7 +10,7 @@ main()
 	int len;		/* current line length */
 	int max;		/* maximum length seen so far */
 	char line[MAXLINE];	/* current input line */
-	char longest[MAXLINE];	/* longest line save here */
+	char longest[MAXLINE];	/* longest line saved here */
 
 	max = 0;
 	while ((len = readline(line, MAXLINE)) > 0) {
@@ -25,21 +25,21 @@ main()
 	return 0;
 }
 
-/* readline: read a line into s, return length */
+/* readline: read a line into s, return real length */
 int readline(char s[], int lim)
 {
 	int c, i;
 
 	for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; ++i)
-		s[i] = c;	
+		s[i] = c;
 	if (c == '\n') {
 		s[i] = c;
 		++i;
 	}
 	s[i] = '\0';
-	while (c != EOF && c != '\n') {
-		c = getchar();
+	while (c != EOF && c != '\n') { /* continue to increment i while EOL is not reached */
 		++i;
+		c = getchar();
 	}
 	return i;
 }
