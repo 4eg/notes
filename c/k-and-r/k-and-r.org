@@ -155,24 +155,24 @@ Dennis M. Ritchie
 * Chapter 1: A Tutorial Introduction
 
 - Shows the *essential elements* of the language without getting bogged down in details, rules and exceptions
-- Neither complete or precise \rightarrow Features to write bigger programs are put aside (e.g, pointers, structures, set of operators, several control flow statements, standard library)
-- *Focus on the basics*: variables and constants, arithmetic, control flow, functions, and the rudiments of input and output \rightarrow Write useful programs ASAP
+- Neither *complete or precise* \rightarrow Features to write bigger programs are put aside (e.g, pointers, structures, set of operators, several control flow statements, standard library)
+- *Focus on the basics*: variables and constants, arithmetic, control flow, functions, and the rudiments of input and output \rightarrow Write useful programs quickly
 - Can be used as a *framework* for programmers of any level
 
-- Drawbacks of this approach:
+- _Drawbacks of this approach_:
   - *No complete story* on any particular feature
   - May be *misleading*
-  - Not using the *full power of C* \rightarrow Programs are not as *elegant* and concise as they might be
+  - Not using the *full power of C* \rightarrow Programs are not as *elegant* and *concise* as they might be
   - Later chapters will necessarily repeat some of the contents of this one
 
 
-** 1-1 Getting Started
+** 1.1 Getting Started
 
 - _Creating a C program on the UNIX OS_:
   - The *text of a program* must be saved in a *file* whose name ends in ".c" (e.g., hello.c)
   - *Compile* this file with the command ~$ cc hello.c~ \rightarrow ~$ gcc hello.c~ on a GNU/Linux system
   - Compilation proceeds silently and makes an *executable file* named "*a.out*"
-  - *Run* the latter by typing its name: ~$ a.out~ \rightarrow ~$ ./a.out~ on a GNU/Linux system
+  - *Run* it by typing its name: ~$ a.out~ \rightarrow ~$ ./a.out~ on a GNU/Linux system
 
 #+BEGIN_SRC C
   #include <stdio.h>
@@ -219,7 +219,7 @@ _Exercises_:
 
 ** 1.2 Variables and Arithmetic Expressions
 
-- A /comment/ explains briefly what the program does \rightarrow Make it easier to understand
+- A /comment/ explains briefly *what the program does* \rightarrow Make it easier to understand
   - Any characters between ~*/~ and ~*/~ are *removed by the preprocessor* before compilation
   - Comments may appear *anywhere a blank or tab or newline can*
 
@@ -228,7 +228,7 @@ _Exercises_:
 - A /declaration/ announces the *properties of variables*
   - *All variables must be declared before they are used in C* \rightarrow Usually at the *beginning of the function* before any executable statement
   - declaration = type name + a list of variables \rightarrow E.g., ~int fahr, celsius;~
-  - The size of the objects of these types are *machine-dependent* (e.g., 32-bit ~ints~ VS 16-bit ~ints~)
+  - The size of the objects of these types are *machine-dependent* (e.g., 32-bit ~int~ VS 16-bit ~int~)
   - (Other data structures utilizes these basic types to create bigger data types)
 
 - _Basic data types_ (non-exhaustive):
@@ -243,11 +243,11 @@ _Exercises_:
 | ~double~ | double-precision floating point                                                        |
 
 - An /assignment statement/ assigns a value to a variable \rightarrow E.g., ~lower = 0;~
-  - (This is where the computation starts in the provided program)
+  - (This is where the computation starts)
 
 - A *loop* repeats one or more statements while *a condition is true*
-  - Composed of: *a condition* enclosed in parentheses ~()~ + *a body* enclosed in braces ~{}~ (optional if it contains a single statement)
-  - The condition is *retested at each iteration*
+  - Composed of: *a condition* enclosed in parentheses ~()~ + *a body* enclosed in braces ~{}~ (optional if containing a single statement)
+  - The condition is *re-evaluated at each iteration*
   - When the condition becomes false, the *execution continues* at the next statement
 
 - *Proper indentation and spacing* are not required by the compiler but are *critical to make the program easier to read*
@@ -262,16 +262,16 @@ _Exercises_:
   - ~celsius = 5 * (fahr-32) / 9~ would *result in 0* if the division was the first operation \rightarrow *But the result is still truncated*
     - If an arithmetic operator has *integer operands*: *an integer operation* is performed
   - The ~float~ *type can be used instead*
-    - If an arithmetic operand has *one integer and one floating-point operand*: *integer operand is converted to floating-point operand* and *floating-point operation* is performed
-      - Prefer to write floating-point constants *ending with* ~.0~ (or ~.~) instead of integer constants when *dealing with other floating-point operands* \rightarrow Emphasizes their *floating-point nature* and *avoid conversion*
+    - If an arithmetic operand has *one integer* and *one floating-point operand*: *integer operand is converted to floating-point operand* and *floating-point operation* is performed
+      - Prefer to write floating-point constants *ending with* ~.0~ (or ~.~) instead of integer constants when *dealing with other floating-point operands* \rightarrow Emphasizes their *floating-point nature* + *avoid conversion*
 
 - ~printf~ is *a general-purpose output formatting function*
-  - *Not part of the C language* (no i/o defined in C itself) but part of the *standard library*
+  - *Not part of the C language* (recall that no I/O defined in C itself) but part of the *standard library*
   - The first argument is the *string of characters to be printed*
   - The other arguments are the *values that substitutes each format specifier*
     - ~%d~ and ~%f~ can be augmented with a *minimum width* (right-justifies) \rightarrow E.g., ~%3d~, ~%2f%~
     - ~%f~ can be be augmented with a *maximum number of digits after the decimal point* \rightarrow E.g., ~%.2f%, ~%3.0f%~
-  - (Format specifiers and arguments must match up properly by *number* and *type* under penalty of wrong output)
+  - (Format specifiers and arguments must *match up properly* by *number* and *type* under penalty of wrong output)
 
 - _Format specifiers_ (non-exhaustive):
 
@@ -314,9 +314,9 @@ _Exercises_:
   - *Initialization*: assign a value to a variable when the loop is entered \rightarrow Not a variable declaration
   - *Condition*: specifies when the loop ends + re-evaluated at each iteration
   - *Increment*: update the value of a variable at each iteration
-- Most of the time, these parts are related to *a same variable* \rightarrow Not mandatory though
-- Thus, they can be *any expressions*
-  - Any part can even be *empty* between the ~;~ \rightarrow Infinite loop if none
+- Most of the time, these parts are related to *a same variable* \rightarrow But not mandatory (e.g., ~for (i = 0; flag == 0; ++i)~)
+  - They can be *any expressions*
+  - Any part can even be left *empty* between ~;~ \rightarrow Infinite loop if none
 
 - *Recommendation for loops*: use a ~for~ *when the number of iterations is known beforehand* and a ~while~ *when not*
 
@@ -326,7 +326,7 @@ _Exercises_:
 
 ** 1.4 Symbolic Constants
 
-- *Bad practice*: bury "magic numbers" in a program (e.g., 300, 20) \rightarrow Convey little information to the reader + Must change all occurrences when updating values
+- *Bad practice*: bury "magic numbers" in a program (e.g., 300, 20) \rightarrow Convey *little information* to the reader + Must change all occurrences when *updating values*
   - *Solution*: give them meaningful name via /symbolic constants/
 
 - _Symbolic constant syntax_:
@@ -337,8 +337,8 @@ _Exercises_:
 
 - *A search and replace operation*: Any occurrence of ~NAME~ will be *replaced* by the corresponding ~replacement_text~ in the program text \rightarrow Done during the *preprocessing step*
   - ~NAME~ will not be replaced when *in quotes* or *part of another name*
-  - ~NAME~ must respect the naming rules as *a variable name* \rightarrow Conventionally written in *upper case* to be readily distinguished
-  - ~replacement_text~ can be *any text* that will *make sense when replaced with* (e.g., integers, floating-point number, type, type with variable name, function name, text in quotes)
+  - ~NAME~ must respect the same naming rules as *a variable name* \rightarrow Conventionally written in *upper case* to be readily distinguished
+  - ~replacement_text~ can be *any text* that will *make sense in the context where it will be replaced with* (e.g., integers, floating-point number, type, type with variable name, function name, text in quotes)
 
 - Symbolic constants must *not appear in declarations* since they are not variables \rightarrow Generally under ~#include~ directives
 - (Note that there is no ~;~)
@@ -346,12 +346,12 @@ _Exercises_:
 
 ** 1.5 Character Input and Output
 
-- Chapter focuses on *a family of related programs* for *processing character data*
+- This part focuses on *a family of related programs* for *processing character data*
   - Many UNIX programs are just *expanded versions* of the prototypes discussed
 
 - The *model of input and output* supported by the *standard library* is very simple: text input or output is dealt with as *stream of characters*
-  - A /text stream/ is a *sequence of characters* divided into *lines*; each line consists of *zero or more characters* followed by *a newline character*
-  - The *standard library* is responsible for making each input or output stream *conform to this model* \rightarrow Thus, programmer does not need to worry about *how lines are represented outside the program*
+  - A /text stream/ is a *sequence of characters* divided into *lines*; each line consists of *0 or more characters* followed by *a newline character*
+  - The *standard library* is responsible for making each input or output stream *conform to this model* \rightarrow The programmer does not need to worry about *how lines are represented outside the program*
 
 - Several functions are provided for *reading or writing one character at a time*
   - *Simplest ones*:
@@ -376,8 +376,9 @@ _Exercises_:
   }
 #+END_SRC
 
-- A character is *stored internally as a bit pattern* \rightarrow Like everything else on a computer
-- The ~c~ variable is used to *store and reuse the read character* \rightarrow If you do not need to work on the read character (e.g., with a counter), you *do not need a variable*
+- A character is *stored internally as a bit pattern* (like everything else on a computer)
+- The ~c~ variable is used to *store and reuse the read character*
+  - \rightarrow If you do not need to work on the read character (e.g., with a counter), you *do not need a variable*
 - Although the data type ~char~ is specifically meant for storing characters, ~int~ is used instead because it provides *a wider range of values* to hold characters not present in the ASCII table
   - (+ Apparently, there was a time where ~char~ could not hold ~EOF~ + any possible ~char~)
 
@@ -412,8 +413,8 @@ _Exercises_:
   }
 #+END_SRC
 
-- The ~++~ operator /increments by one/ the value of a variable \rightarrow Shorter than ~nc  = nc + 1~
-  - The ~--~ operator exists just as well (/decrements/)
+- The ~++~ operator /increments by 1/ the value of a variable \rightarrow Shorter than ~nc  = nc + 1~
+  - Also available: the ~--~ operator (/decrements/)
   - They can be either *prefix operators* (e.g., ~++nc~) or *postfix* (e.g., *nc++*) \rightarrow Stick to the *prefix form* most of the time
 
 - The ~long~ type (at least 32-bit) is used because the number of characters in a file can easily *overflow a ~16-bit int~ counter*
