@@ -4,7 +4,7 @@ The C Programming Language
 Second edition
 1988
 Brian W. Kernighan
-Denis M. Ritchie
+Dennis M. Ritchie
 
 
 * Preface
@@ -35,7 +35,7 @@ Denis M. Ritchie
 
 - C is a *general-purpose* programming language
   - Features: *economy of expression*, *modern control flow and data structures*, and a *rich set of operators*
-  - Not a "very high level language", nor a "big" one, and versatile (i.e., not specialized to any particular area of application)
+  - Not a "very high level language", nor a "big" one, but versatile (i.e., not specialized to any particular area of application)
   - A "*system programming language*" as well: useful for writing compilers and operating system \rightarrow "*C is a portable assembly language*"
   - Absence of restrictions + Generality = More convenient and effective than supposedly more powerful languages
 
@@ -50,19 +50,19 @@ Denis M. Ritchie
   - Assumes that the reader is familiar with basic programming concepts
   - (Each example has been tested directly from text, which is in a machine-readable form)
 
-- \rightarrow "The *only way* to learn a new programmming language is by *writting programs in it*."
+- \rightarrow "The *only way* to learn a new programming language is by *writing programs in it*."
 
 
 
 * Introduction
 
-- C is a relatively *low level* language \rightarrow Deals with the same sort of *objects that most computers do* (i.e., characters, numbers and addresses)
+- C is a relatively "*low level*" language \rightarrow Deals with the same sort of *objects that most computers do* (i.e., characters, numbers and addresses)
   - They may be *combined* and *moved about* with the arithmetic and logical operators implemented by real machines
 
 - _C does feature_:
 
-  - In addition to *fundamental types* (i.e., characters, integers and floating-point numbers of several sizes), there is a hierarchy of *derived data types* created with pointers, arrays and unions
-  - *Expressions* are formed from operators and operands; any expression, including an assignment or a function call, can be a statement
+  - *Fundamental types* (i.e., characters, integers and floating-point numbers of several sizes) + a hierarchy of *derived data types* (created with pointers, arrays and unions)
+  - *Expressions* are formed from *operators and operands*; any expression can be *a statement* (e.g., an assignment, a function call)
   - *Pointers* provide for machine-independent address arithmetic
 
   - *Control-flow constructions*:
@@ -88,16 +88,17 @@ Denis M. Ritchie
     - *Inclusion* of other source files
     - *Conditional compilation*
 
-  - *Straightforward* and *single-thread* control flow: tests, loops, grouping, and subprograms, but not multiprogramming, parallel operations, synchronization, or coroutines
+  - *Straightforward* and *single-thread* control flow: tests, loops, grouping, and subprograms
+    - *But no*: multiprogramming, parallel operations, synchronization, or coroutines
 
 - _C does not feature_:
 
-  - *Operations* to deal directly with *composite objects* such as character string, sets, lists, or array \rightarrow Although structures may be copied as a unit
+  - *Operations* to deal directly with *composite objects* such as character string, sets, lists, or array \rightarrow Although structures may be *copied as a unit*
   - *Heap* or *garbage collection*: no *storage allocation facility* other than *static definition* and the *stack discipline* provided by the local variables of functions
   - *Input/output facilities* (i.e., no READ or WRITE statements) nor built-in *file access methods*
 
 - All of these higher-level mechanisms must be provided by *explicitly-called functions*
-  - Although the absence of some of these features may seem like a *grave deficiency*, keeping the language down to *modest size has real benefits*
+  - Although the absence of some of these features may seem like a *grave deficiency*, keeping the language down to modest size *has real benefits*
     - It can be described in a *small space*, and thus *learned quickly* \rightarrow A programmer can reasonably expect to *know*, *understand*, and *regularly use* the *entire language*
 
 - Many of the important ideas of C stem from the *language BCPL*
@@ -111,9 +112,9 @@ Denis M. Ritchie
     - Most important one: *new syntax for declaring and defining functions*
       - Permits *cross-checking of definition with use*
       - A function declaration can now include a *description of the arguments* of the function; the definition syntax changes to match
-      - \rightarrow Much easier for compiler to detect errors caused by mismatched arguments
+      - \rightarrow Much easier for compiler to detect errors caused by *mismatched arguments*
     - Other ones:
-      - Formalization of *structure assignment* and *enumerations* \rightarrow They were hinted bu not described in the original definition
+      - Formalization of *structure assignment* and *enumerations* \rightarrow They were hinted but not described in the original definition
       - *Floating-point computations* may now be done in *single precision*
       - *Properties of arithmetic* are clarified \rightarrow Especially for unsigned types
       - The *preprocessor* is more elaborate
@@ -121,20 +122,20 @@ Denis M. Ritchie
 	- *Proper declarations* and *explicit conversions* are now required by the standard (but was already enforced in good compilers)
 	- New function declarations are a step in this direction as well
 
-  - _Definition of a library to accompany C_ \rightarrow Provides a common interface to the OS
+  - _Definition of a library to accompany C_ \rightarrow Provides *a common interface to the OS*
     - *A collection of standard headers* provides uniform access to *declarations of function* and *data types*
     - *Assurance of compatible behavior* when a program using it is executed on different host systems
     - Closely modeled on the *standard I/O library* of the UNIX system (described in the first edition) \rightarrow Programmers will not see much change with the new library
     - Specifies *functions* for:
-      - Accessing the OS* (e.g., read and write files)
+      - Accessing the OS (e.g., read and write files)
       - Formatted input and output
       - Memory allocation
       - String manipulation
       - ...
     - Functions are only called *explicitly* \rightarrow The library can be avoided if not used
-    - Most of these functions are *written in C* \rightarrow Thus they are *portable* (except for the OS details they might conceal)
+    - Most of these functions are *written in C* \rightarrow They are *portable* (except for the OS details they might conceal)
 
-- The *run-time library* required to implement self-contained program is *tiny* \rightarrow Due to direct support of data types and control structures provided
+- The *run-time library* required to implement self-contained program is *tiny* \rightarrow Due to *direct support of data types* and *control structures provided*
 
 - *Portability*: C is independent of any particular *machine architecture* despite it matches the capabilities of many computers
   - The standard states explicitly *machine-dependent aspects* of the language \rightarrow Description of *portability issues* and *a set of constant that characterizes the host machine*
