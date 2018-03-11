@@ -592,3 +592,71 @@ else
 _Exercises_:
 - [[file:exercises/1-11/wc.c][Exercise 1-11]]
 - [[file:exercises/1-12/wpl.c][Exercise 1-12]]
+
+
+*** 1.6 Arrays
+
+#+BEGIN_SRC C
+  #include <stdio.h>
+
+  /* count digits, white space, others */
+  main()
+  {
+          int c, i, nwhite, nother;
+          int ndigit[10];
+
+          nwhite = nother = 0;
+          for (i = 0; i < 10; ++i)
+                  ndigit[i] = 0;
+
+          while ((c = getchar()) != EOF)
+                  if (c >= '0' && c <= '9')
+                          ++nidigits[c-'0'];
+                  else if (c == ' ' || c == '\n' || c == '\t')
+                          ++nwhite;
+                  else
+                          ++nother;
+
+          printf("digits = ");
+          for (i = 0; i < 10; ++i)
+                  printf(" %d", ndigit[i]);
+          printf(", white space = %d, other = %d\n", nwhite, nother);
+  }
+#+END_SRC
+
+- More convenient to use an /array/ rather than multiple *individual variables* \rightarrow Useful to store *related variable* into a single one
+- ~int ndigit[10];~ declares ~ndigit to be *an array of 10 integers*
+- *Array subscripts always start at zero in C*
+  - The /elements/ of ~ndigit~ can be accessed from 0 to 9
+- A subscript can be *any integer expression* (e.g., ~8~, ~i~, ~++i~)
+- Since we expect the counters contained in ~ndigit~ to be 0, we must *initialize each element to 0* \rightarrow *Might contain garbage by default*
+
+- This program relies on the properties of the *character representation of the digits*
+  - *The numerical value of a digit is not the digit itself* in the ASCII table (e.g, ~'8' == 8~ is false)
+  - Recall that you do not need to know/use the *numerical value of a particular character* of your character set (e.g., ~c >= '0' && c <= '9'~)
+  - Since ~chars~ are just small integers, ~char~ *variables and constants are identical to* ~ints~ *in arithmetic expressions*
+    - E.g., ~c - '0'~ is a integer expression with a value between 0 and 9 corresponding to the character '0' to '9' stored in ~c~ \rightarrow Can be used as a valid subscript for ~ndigit~
+  - (~c - '0'~ works only if '0' to '9' have *consecutive increasing numerical values* \rightarrow True for all (sane) character sets)
+
+#+BEGIN_VERSE
+~if~ (/condition_1/)
+	/statement_1/
+~else if~ (/condition_2/)
+	/statement_2/
+...
+	...
+~else~
+	/statement_n/
+#+END_VERSE
+
+- Frequent pattern in programs as a way to express *a multi-way decision*
+- The /conditions/ are evaluated *in order from the top until some* /condition/ *is satisfied* \rightarrow Execution of the *corresponding* /statement/ \rightarrow *End of the entire construction*
+  - ~else~ is executed if *none of the conditions is satisfied*
+- There can be *any number of* ~else if~ *groups* between the initial ~if~ and the final ~else~
+- (Any /statement/ can be several statements enclosed in braces)
+
+- ~switch~ statements provides another way to write *a multi-way branch* that is particularly suitable when the condition is whether some integer or character expression *matches one of a set of constants*
+
+_Exercises_:
+- [[file:exercises/1-13/histlen.c][Exercise 1-13]]
+- [[file:exercises/1-14/histc.c][Exercise 1-14]]
