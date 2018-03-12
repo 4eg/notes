@@ -1,4 +1,4 @@
-#+TITLE: The C Programming Language - Notes
+~#+TITLE: The C Programming Language - Notes
 
 The C Programming Language
 Second edition
@@ -660,3 +660,114 @@ _Exercises_:
 _Exercises_:
 - [[file:exercises/1-13/histlen.c][Exercise 1-13]]
 - [[file:exercises/1-14/histc.c][Exercise 1-14]]
+
+
+** 1.7 Functions
+
+- A function provides a convenient way to *encapsulate some computation* which can then be used *without worrying about its implementation*
+- "With properly designed functions, it is possible to ignore /how/ a job is done; knowing /what/ is done is sufficient."
+- Often, a short function is *defined and called only once*, just because it *clarifies some piece of code*
+
+#+BEGIN_SRC C
+  #include <stdio.h>
+
+  int power(int m, int n);
+
+  /* test power function */
+  main()
+  {
+          int i;
+
+          for (i = 0; i < 10; ++i)
+                  printf("%d %d %d \n", i, power(2,i), power(-3,i));
+          return 0;
+  }
+
+  /* power:  raise base to n-th power; n >= 0 */
+  int power(int base, int n)
+  {
+          int i, p;
+
+          p = 1;
+          for (i = 1; i <= n; ++i)
+                  p = p * base;
+          return p;
+  }
+#+END_SRC
+
+- (Not a practical exponentiation routine: handles only positive powers of small integers)
+- (The standard library contains a function ~pow(x,y)~ that computes x^y)
+
+_Form of a function definition:_
+#+BEGIN_VERSE
+/return-type/ /function-name/(/parameter declarations, if any/)
+{
+	/declarations/
+	/statements/
+}
+#+END_VERSE
+
+- Functions definitions can appear:
+  - In *any order*
+  - In *a single source file* or *several* \rightarrow But *cannot be split* across them
+    - May require to provide *additional instructions* in order to compile the program if the source appears in several files \rightarrow This is an OS matter, *not a language attribute*
+
+- ~printf("%d %d %d \n", i, power(2,i), power(-3,i));~
+  - Each call passes *2 arguments* to power, which each time *returns an integer* to be formatted and printed
+    - Recall that ~power(2,i)~ is an integer just as ~2~ and ~i~ are
+
+- ~int power(int base, int n)~
+  - Declares the *parameter types and names* + the *type of the result* that the function returns
+  - *The name used by* ~power *for its parameters are local to this function* + *the variables of* /declarations/ (i.e., ~i~ and ~p~)
+    - \rightarrow The ~i~ in ~power~ is *unrelated* to the ~i~ in ~main~
+
+- "We will generally use /parameter/ for a variable named in the parentesized list in a function definition, and /argument/ for the value used in a call of the function."
+  - "The terms /formal argument/ and /actual argument/ are sometimes used for the same distinction."
+
+- The value that ~power~ computes is *returned to* ~main~ by the ~return~ statement
+  - *Any expression* may follow ~return~
+  - A function *does not need to return a value*
+  - ~return~ followed with no expression has *the same effect* as falling off the end of a function: *control is returned to caller* (but no useful value)
+  - The returned value can be *ignored* by the calling function
+  - Since ~main~ is a function like any other, *it may return a value to its caller* (i.e., the *environment* in which the program was executed)
+    - *Programs should return status to their environment*
+    - Typically, zero implies *normal termination* and non-zero values implies *unusual or erroneous termination conditions*
+    - ~return 0;~ is *added automatically* by modern compilers when omitted
+
+- ~int power(int m, int n);~
+- This /function prototype/ is a *declaration* that says that ~power~ is a function that expects two ~int~ arguments and returns an ~int~
+  - Has to agree with the *definition and uses of* ~power~ \rightarrow It is an error otherwise
+    - *Exception*: parameter names; which are optional \rightarrow Prototype could have been written: ~int power(int, int)~
+      - Often, different names will be chosen to server as *good documentation* for the purpose of a parameter
+
+_Function declaration in the original defintion of C:_
+#+BEGIN_SRC C
+  /* power:  raise base to n-th power; n >= 0 */
+  /*         (old-style version */
+  power(base, n)
+  int base, n;
+  {
+          int i, p;
+
+          p = 1;
+          for (i = 1; i <= n; ++i)
+                  p = p * base;
+          return p;
+  }
+#+END_SRC
+
+- Biggest change between ANSI C ans earlier versions: *function declarations and definitions*
+- *Parameters*: names between ~()~ + types before the ~{~ (undeclared parameters considered as ~int~)
+- Declaration of ~power~ at the beginning of the program:
+
+#+BEGIN_SRC C
+  int power();
+#+END_SRC
+
+- *No parameter list* was permitted \rightarrow Compiler could not *readily check* that the function was being called correctly
+  - Note: since the *default return type was* ~int~, this entire declaration *could have been omitted*
+- \rightarrow With the new syntax, much easier for a compiler to *detect errors* in the *number of arguments* or *their types*
+- (The old style still works in ANSI C (at least for a transition period) but is strongly deprecated)
+
+_Exercises_:
+- [[file:exercises/1-15/f2c.c][Exercise 1-15]]
