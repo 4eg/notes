@@ -771,3 +771,34 @@ _Function declaration in the original defintion of C:_
 
 _Exercises_:
 - [[file:exercises/1-15/f2c.c][Exercise 1-15]]
+
+
+** 1.8 Arguments - Call by Value
+
+- All function arguments are passed "*by value*" in C
+  - \rightarrow The called function is given the values of its arguments in *temporary variables* rather than the originals
+  - *Cannot directly alter a variable* in the calling function; it can only *alter its private, temporary copy*
+  - Lead to more *compact* programs with *fewer extraneous variables* \rightarrow Parameters are like *initialized local variables*
+  - Leads to some different properties than are seen with "*call by reference*" (like in Fortran, or with ~var~ parameters in Pascal)
+
+_Function altering a parameter:_
+#+BEGIN_SRC C
+  /* power:  raise base to n-th power; n>=0; version 2 */
+  int power(int base, int n)
+  {
+          int p;
+
+          for (p = 1; n > 0; --n)
+                  p = p * base;
+          return p;
+  }
+#+END_SRC
+
+- The variable ~i~ is no longer needed
+- Whatever is done to the parameter will *not alter the original argument*
+
+- A function can modify a variable anyway by *providing the* /address/ *of the variable to be set* (technically a /pointer/ to the variable)
+  - The parameter type must be *a pointer* as well
+  - This address would *be copied to the called function* like other arguments
+  - When an *array* is passed as argument, *the address of the first element is actually passed* (this address is copied, not the elements)
+    - Any element can be accessed/altered by *subscripting the parameter*
