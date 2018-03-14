@@ -802,3 +802,121 @@ _Function altering a parameter:_
   - This address would *be copied to the called function* like other arguments
   - When an *array* is passed as argument, *the address of the first element is actually passed* (this address is copied, not the elements)
     - Any element can be accessed/altered by *subscripting the parameter*
+
+
+** 1.9 Character Arrays
+
+- Most common type of array in C: *array of characters*
+
+_Outline of a program that reads a set of of text lines and prints the longest:_
+#+BEGIN_VERSE
+~while (/there's another line/)
+	if (/it's longer than the previous longest/)
+		/save it/
+		/save its length/
+/print longest line/
+#+END_VERSE
+
+- \rightarrow The program *divides naturally into pieces*:
+  - Get a new line
+  - Test it
+  - Save it
+  - Control the process
+
+#+BEGIN_SRC C
+  #include <stdio.h>
+  #define MAXLINE 1000            /* maximum input line size */
+
+  int getline(char line[], int maxline);
+  void copy(char to[], char from[]);
+
+  /* print longest input line */
+  main()
+  {
+          int len;                /* current line length */
+          int max;                /* maximum length seen so far */
+          char line[MAXLINE];     /* current input line */
+          char longest[MAXLINE];  /* longest line save here */
+
+          max = 0;
+          while ((len = getline(line, MAXLINE)) > 0)
+                  if (len > max) {
+                          max = len;
+                          copy(longest, line);
+                  }
+
+          if (max > 0)            /* there was a line */
+                  printf("%s", longest);
+          return 0;
+  }
+
+  /* getline: read a line into s, return length */
+  int getline(char s[], int lim)
+  {
+          int c, i;
+
+          for (i=0; i<lim-1 && (c=getchar())!=EOF && c!='\n'; ++i)
+                  s[i] = c;
+          if (c == '\n') {
+                  s[i] = c;
+                  ++i;
+          }
+          s[i] = '\0';
+          return i;
+  }
+
+  /* copy: copy 'from' into 'to'; assume to is big enough */
+  void copy(char to[], char from[])
+  {
+          int i;
+
+          i = 0;
+          while ((to[i] = from[i]) != '\0')
+                  ++i;
+  }
+#+END_SRC
+
+| h | e | l | l | o | \n | \0 |
+
+ - Convention for strings of characters in C: stored as *an array of characters* containing the *characters of the string* and *terminated with a* ~'\0'~ to mark the end
+  - ~'\0'~ is called the /null character/, whose value is zero
+  - Implies that ~'\0'~ is not part of normal text
+  - The ~%s~ format specification in ~printf~ expect a string *represented in this form*
+  - ~copy~ relies on strings terminated by ~'\0'~ as well
+
+- Providing the the size of an array in a declaration (e.g., ~char line[MAXLINE];~) is to *set aside storage*
+  - The length of the array parameters of ~getline~ and ~copy~ are omitted *since the size of arguments is set in* ~main~
+
+- The return type of ~getline~ is optional *since* ~int~ *is the default one*
+- The return type of ~copy~ is ~void~ \rightarrow States explicitly that *no value is returned*
+
+- ~getline~ *fetches the next line of input*
+  - Made to be reused in *other contexts*
+  - Stops fetching when:
+    - The character read is either *a newline or* ~EOF~
+    - The array ~s~ *size limit* has been reached
+  - Returns the *length of line*
+    - Returns 0 if ~EOF~ (+ never a valid line length), 1 if the line contains only a newline (i.e., is empty)
+  - The ~lim~ parameter could have been substituted with the *symbolic constant* ~MAXLINE~
+    - \rightarrow However, a program could need to call ~getline~ with different ~lim~ values each time
+  - ~if (c == '\n')~ is entered if *it is the test that put an end to the previous* ~for~ *loop* \rightarrow Redundant; but is there another way?
+  - (~getline~ is already function defined in the modern stardard library \rightarrow Rename it (e.g., ~readline~)
+
+- ~copy~ has to copy array items one by one \rightarrow Arrays *cannot be copied like basic data types* (pointer is copied otherwise)
+
+- ~main~ communicates with the other functions through *arguments and returned value*
+- ~main~ and the function prototypes and definitions are *assumed to be contained in a one file*
+- The name of the parameters in the function prototype are *more descriptive* to document them better
+
+- _Sticky design problems_:
+  - What should do ~main~ if ~MAXLINE~ is exceeded? \rightarrow ~getline~ *works safely*: stop fetching *when the array is full before a* ~'\n'~ / ~EOF~
+    - ~main~ could check if a line is truncated by testing if the *returned length equals* ~MAXLINE~ and if the *last character is not* ~'\n'~ / ~EOF~
+      - \rightarrow *Store multiple longest lines*?
+    - ~copy~ *does not check for overflow errors*
+      - \rightarrow No safety needed (not like ~getline~): the size of arguments *is already known / can be found out*
+
+_Exercises_:
+- [[file:exercises/1-16/ll.c][Exercise 1-16]]
+- [[file:exercises/1-17/p80.c][Exercise 1-17]]
+- [[file:exercises/1-18/rts.c][Exercise 1-18]]
+- [[file:exercises/1-19/rev.c][Exercise 1-19]]
