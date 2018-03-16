@@ -477,7 +477,7 @@ _Exercises_:
   }
 #+END_SRC
 
-- \righarrow *Always prefer to work with character constants over their numerical value*
+- \rightarrow *Always prefer to work with character constants over their numerical value*
   - + Independence of *a particular character set* (even if ASCII is almost always used)
 
 _Exercises_:
@@ -721,7 +721,7 @@ _Form of a function definition:_
   - *The name used by* ~power *for its parameters are local to this function* + *the variables of* /declarations/ (i.e., ~i~ and ~p~)
     - \rightarrow The ~i~ in ~power~ is *unrelated* to the ~i~ in ~main~
 
-- "We will generally use /parameter/ for a variable named in the parentesized list in a function definition, and /argument/ for the value used in a call of the function."
+- "We will generally use /parameter/ for a variable named in the parenthesized list in a function definition, and /argument/ for the value used in a call of the function."
   - "The terms /formal argument/ and /actual argument/ are sometimes used for the same distinction."
 
 - The value that ~power~ computes is *returned to* ~main~ by the ~return~ statement
@@ -740,7 +740,7 @@ _Form of a function definition:_
     - *Exception*: parameter names; which are optional \rightarrow Prototype could have been written: ~int power(int, int)~
       - Often, different names will be chosen to server as *good documentation* for the purpose of a parameter
 
-_Function declaration in the original defintion of C:_
+_Function declaration in the original definition of C:_
 #+BEGIN_SRC C
   /* power:  raise base to n-th power; n >= 0 */
   /*         (old-style version */
@@ -850,7 +850,7 @@ _Outline of a program that reads a set of of text lines and prints the longest:_
           return 0;
   }
 
-  /* getline: read a line into s, return length */
+  /* getline:  read a line into s, return length */
   int getline(char s[], int lim)
   {
           int c, i;
@@ -865,7 +865,7 @@ _Outline of a program that reads a set of of text lines and prints the longest:_
           return i;
   }
 
-  /* copy: copy 'from' into 'to'; assume to is big enough */
+  /* copy:  copy 'from' into 'to'; assume to is big enough */
   void copy(char to[], char from[])
   {
           int i;
@@ -900,7 +900,7 @@ _Outline of a program that reads a set of of text lines and prints the longest:_
   - The ~lim~ parameter could have been substituted with the *symbolic constant* ~MAXLINE~
     - \rightarrow However, a program could need to call ~getline~ with different ~lim~ values each time
   - ~if (c == '\n')~ is entered if *it is the test that put an end to the previous* ~for~ *loop* \rightarrow Redundant; but is there another way?
-  - (~getline~ is already function defined in the modern stardard library \rightarrow Rename it (e.g., ~readline~)
+  - (~getline~ is already function defined in the modern standard library \rightarrow Rename it (e.g., ~readline~)
 
 - ~copy~ has to copy array items one by one \rightarrow Arrays *cannot be copied like basic data types* (pointer is copied otherwise)
 
