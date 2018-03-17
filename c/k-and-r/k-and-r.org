@@ -1,4 +1,4 @@
-~#+TITLE: The C Programming Language - Notes
+#+TITLE: The C Programming Language - Notes
 
 The C Programming Language
 Second edition
@@ -59,7 +59,7 @@ Dennis M. Ritchie
 - C is a relatively "*low level*" language \rightarrow Deals with the same sort of *objects that most computers do* (i.e., characters, numbers and addresses)
   - They may be *combined* and *moved about* with the arithmetic and logical operators implemented by real machines
 
-- _C does feature_:
+- _C does feature:_
 
   - *Fundamental types* (i.e., characters, integers and floating-point numbers of several sizes) + a hierarchy of *derived data types* (created with pointers, arrays and unions)
   - *Expressions* are formed from *operators and operands*; any expression can be *a statement* (e.g., an assignment, a function call)
@@ -91,7 +91,7 @@ Dennis M. Ritchie
   - *Straightforward* and *single-thread* control flow: tests, loops, grouping, and subprograms
     - *But no*: multiprogramming, parallel operations, synchronization, or coroutines
 
-- _C does not feature_:
+- _C does not feature:_
 
   - *Operations* to deal directly with *composite objects* such as character string, sets, lists, or array \rightarrow Although structures may be *copied as a unit*
   - *Heap* or *garbage collection*: no *storage allocation facility* other than *static definition* and the *stack discipline* provided by the local variables of functions
@@ -106,9 +106,9 @@ Dennis M. Ritchie
   - In contrast to C, B and BCPL are *typeless* languages
   - (1970: creation of the language B by Ken Thompson on the DEC PDP-7)
 
-- _Contributions brought by the standard to the language_:
+- _Contributions brought by the standard to the language:_
 
-  - _Language changes_:
+  - _Language changes:_
     - Most important one: *new syntax for declaring and defining functions*
       - Permits *cross-checking of definition with use*
       - A function declaration can now include a *description of the arguments* of the function; the definition syntax changes to match
@@ -159,7 +159,7 @@ Dennis M. Ritchie
 - *Focus on the basics*: variables and constants, arithmetic, control flow, functions, and the rudiments of input and output \rightarrow Write useful programs quickly
 - Can be used as a *framework* for programmers of any level
 
-- _Drawbacks of this approach_:
+- _Drawbacks of this approach:_
   - *No complete story* on any particular feature
   - May be *misleading*
   - Not using the *full power of C* \rightarrow Programs are not as *elegant* and *concise* as they might be
@@ -168,7 +168,7 @@ Dennis M. Ritchie
 
 ** 1.1 Getting Started
 
-- _Creating a C program on the UNIX OS_:
+- _Creating a C program on the UNIX OS:_
   - The *text of a program* must be saved in a *file* whose name ends in ".c" (e.g., hello.c)
   - *Compile* this file with the command ~$ cc hello.c~ \rightarrow ~$ gcc hello.c~ on a GNU/Linux system
   - Compilation proceeds silently and makes an *executable file* named "*a.out*"
@@ -183,7 +183,7 @@ Dennis M. Ritchie
   }
 #+END_SRC
 
-- _Explanations_:
+- _Explanations:_
   - A C program, whatever its size, consists of /functions/ and /variables/
     - *Functions* contain /statements/ that specify the computing operations to be done
       - The statements of a function are enclosed in braces ~{}~
@@ -212,7 +212,7 @@ Dennis M. Ritchie
   ");
 #+END_SRC
 
-_Exercises_:
+_Exercises:_
 - [[file:exercises/1-1/hello.c][Exercise 1-1]]
 - [[file:exercises/1-2/escape_sequences.c][Exercise 1-2]]
 
@@ -286,7 +286,7 @@ _Exercises_:
 
 - ~%%~ must be used to output the ~%~ itself
 
-_Exercises_:
+_Exercises:_
 - [[file:exercises/1-3/f_to_c.c][Exercise 1-3]]
 - [[file:exercises/1-4/c_to_f.c][Exercise 1-4]]
 
@@ -302,7 +302,7 @@ _Exercises_:
   - Appropriate for loops in which the *initialization* and *increment* are *single statements* and *logically related*
   - Keeps the loop control statements *together in one place*
 
-- _For loop syntax_:
+- _For loop syntax:_
 
 #+BEGIN_SRC C
   for (/* initialization */; /* condition */; /* increment */) {
@@ -320,7 +320,7 @@ _Exercises_:
 
 - *Recommendation for loops*: use a ~for~ *when the number of iterations is known beforehand* and a ~while~ *when not*
 
-_Exercises_:
+_Exercises:_
 - [[file:exercises/1-5/f_to_c.c][Exercise 1-5]]
 
 
@@ -329,7 +329,7 @@ _Exercises_:
 - *Bad practice*: bury "magic numbers" in a program (e.g., 300, 20) \rightarrow Convey *little information* to the reader + Must change all occurrences when *updating values*
   - *Solution*: give them meaningful name via /symbolic constants/
 
-- _Symbolic constant syntax_:
+- _Symbolic constant syntax:_
 
 #+BEGIN_SRC C
   #define NAME replacement_text
@@ -391,7 +391,7 @@ _Exercises_:
     - Thus, assignments can be part of *another expression* (e.g., ~(a = 8) + 8~) \rightarrow Easier to read once the *idiom is mastered*
       - ~()~ *are necessary* \rightarrow The /precedence/ of ~!=~ is *higher than that of* ~=~
 
-_Exercises_:
+_Exercises:_
 - [[file:exercises/1-6/i2bool.c][Exercise 1-6]]
 - [[file:exercises/1-7/eofval.c][Exercise 1-7]]
 
@@ -480,7 +480,7 @@ _Exercises_:
 - \rightarrow *Always prefer to work with character constants over their numerical value*
   - + Independence of *a particular character set* (even if ASCII is almost always used)
 
-_Exercises_:
+_Exercises:_
 - [[file:exercises/1-8/spcc.c][Exercise 1-8]]
 - [[file:exercises/1-9/sb.c][Exercise 1-9]]
 - [[file:exercises/1-10/spcr.c][Exercise 1-10]]
@@ -531,14 +531,16 @@ _Exercises_:
     - Evaluated from *left to right* \rightarrow *Guaranteed that evaluation will stop as soon as the truth or falsehood is known*
       - E.g., in this program, if ~c~ is equal to ~' '~, the following tests with '\n' and '\t' respectively *are not evaluated*
 
+#+BEGIN_VERSE
 if (/expression/)
-	/statement/_1
+	/statement_1/
 else
-	/statement/_2
+	/statement_2/
+#+END_VERSE
 
 - ~else~ specifies *an alternative action* if the condition part of an ~if~ statement is *false*
-  - If the /expression/ is true, /statement/_1 is executed; if not, /statement/_2 is executed
-  - An ~else~ /statement/_2 can be any statement, *even an* ~if~ *statement to test another condition* \rightarrow *WARNING*: ~else if~ *is not a statement by itself*
+  - If the /expression/ is true, /statement_1/ is executed; if not, /statement_2/ is executed
+  - An ~else~ /statement_2/ can be any statement, *even an* ~if~ *statement to test another condition* \rightarrow *WARNING*: ~else if~ *is not a statement by itself*
     - *E.g., in this program, the statement after the* ~else~ *is an* ~if~ *that controls two statements in braces*
 
 #+BEGIN_SRC C
@@ -589,12 +591,12 @@ else
   }
 #+END_SRC
 
-_Exercises_:
+_Exercises:_
 - [[file:exercises/1-11/wc.c][Exercise 1-11]]
 - [[file:exercises/1-12/wpl.c][Exercise 1-12]]
 
 
-*** 1.6 Arrays
+** 1.6 Arrays
 
 #+BEGIN_SRC C
   #include <stdio.h>
@@ -657,7 +659,7 @@ _Exercises_:
 
 - ~switch~ statements provides another way to write *a multi-way branch* that is particularly suitable when the condition is whether some integer or character expression *matches one of a set of constants*
 
-_Exercises_:
+_Exercises:_
 - [[file:exercises/1-13/histlen.c][Exercise 1-13]]
 - [[file:exercises/1-14/histc.c][Exercise 1-14]]
 
@@ -769,7 +771,7 @@ _Function declaration in the original definition of C:_
 - \rightarrow With the new syntax, much easier for a compiler to *detect errors* in the *number of arguments* or *their types*
 - (The old style still works in ANSI C (at least for a transition period) but is strongly deprecated)
 
-_Exercises_:
+_Exercises:_
 - [[file:exercises/1-15/f2c.c][Exercise 1-15]]
 
 
@@ -876,7 +878,7 @@ _Outline of a program that reads a set of of text lines and prints the longest:_
   }
 #+END_SRC
 
-| h | e | l | l | o | \n | \0 |
+| ~h~ | ~e~ | ~l~ | ~l~ | ~o~ | ~\n~ | ~\0~ |
 
  - Convention for strings of characters in C: stored as *an array of characters* containing the *characters of the string* and *terminated with a* ~'\0'~ to mark the end
   - ~'\0'~ is called the /null character/, whose value is zero
@@ -908,14 +910,14 @@ _Outline of a program that reads a set of of text lines and prints the longest:_
 - ~main~ and the function prototypes and definitions are *assumed to be contained in a one file*
 - The name of the parameters in the function prototype are *more descriptive* to document them better
 
-- _Sticky design problems_:
+- _Sticky design problems:_
   - What should do ~main~ if ~MAXLINE~ is exceeded? \rightarrow ~getline~ *works safely*: stop fetching *when the array is full before a* ~'\n'~ / ~EOF~
     - ~main~ could check if a line is truncated by testing if the *returned length equals* ~MAXLINE~ and if the *last character is not* ~'\n'~ / ~EOF~
-      - \rightarrow *Store multiple longest lines*?
+      - \rightarrow *Store multiple longest lines?*
     - ~copy~ *does not check for overflow errors*
       - \rightarrow No safety needed (not like ~getline~): the size of arguments *is already known / can be found out*
 
-_Exercises_:
+_Exercises:_
 - [[file:exercises/1-16/ll.c][Exercise 1-16]]
 - [[file:exercises/1-17/p80.c][Exercise 1-17]]
 - [[file:exercises/1-18/rts.c][Exercise 1-18]]
@@ -1016,9 +1018,9 @@ _Longest-line program with external variables:_
   - Leads to programs whose *data connections are not at all obvious* \rightarrow Variables can be changed in unexpected and even inadvertent ways + Program hard to maintain
   - \rightarrow This version of the longest-line program *is inferior to the first* (+ it destroys *the generality* of two useful functions by wiring into them *the names of the variables they manipulate*)
 
-- \rightarrow End of the chapter: covered the *conventional core of C* + possible to write *useful programs of considerable size* with the given building blocks
+- \rightarrow _End of the chapter:_ covered the *conventional core of C* + possible to write *useful programs of considerable size* with the given building blocks
 
-_Exercises_:
+_Exercises:_
 - [[file:exercises/1-20/detab.c][Exercise 1-20]]
 - [[file:exercises/1-21/entab.c][Exercise 1-21]]
 - [[file:exercises/1-22/fold.c][Exercise 1-22]]
